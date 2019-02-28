@@ -1,5 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Comment do
+  it { is_expected.not_to allow_value("").for(:description) }
+  it { is_expected.to allow_value("some random description").for(:description) }
 end
