@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'comments/new'
+  get 'comments/create'
+  get 'comments/update'
+  get 'comments/destroy'
+  get 'comments/index'
+  get 'comments/show'
   devise_for :users
 
   root "home#welcome"
