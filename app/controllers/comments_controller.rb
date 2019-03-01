@@ -8,9 +8,9 @@ class CommentsController < ApplicationController
   def create
     @comment = @movie.comments.build(comments_params)
       unless @comment.save
-         flash[:alert] = @comment.errors.full_messages.join('<br>')
+         flash[:alert] = @comment.errors.full_messages.join(' and ')
       end
-      redirect_to post_path(@post)
+      redirect_to movie_path(@movie.id)
   end
 
   def update
@@ -29,9 +29,9 @@ class CommentsController < ApplicationController
   def find_movie
        @movie = Movie.find(params[:movie_id])
    end
+
   def comments_params
   params.require(:comment).permit(:description).merge({
-    user_id: current_user.id
-  })
-
+    user_id: current_user.id })
+  end
 end

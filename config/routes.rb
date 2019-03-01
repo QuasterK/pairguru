@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'comments/destroy'
   get 'comments/index'
   get 'comments/show'
+  post 'comments_create', to: 'comments#create', as: 'create_comment'
   devise_for :users
 
   root "home#welcome"
