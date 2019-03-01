@@ -1,0 +1,19 @@
+-if @comments
+  .container.margin
+    %h3 list of comments
+    -@comments.each do |comment|
+      .row
+        .col-sm-2
+          Created by:
+          -if current_user.id == comment.user.id
+            You
+          -else
+            =comment.user.name
+        .col-sm-6
+          =comment.description
+        .col-sm-2
+          Comment created at:
+          =comment.created_at
+        -if current_user.id == comment.user.id
+          .col-sm-2
+            = link_to "delete", delete_comment_path(movie_id: comment.movie.id), method: :delete, :class => 'btn btn-danger btn-sm '

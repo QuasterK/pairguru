@@ -1,7 +1,10 @@
 %h1= @movie.title
 .jumbotron
   = @movie.description
+- if !user_signed_in?
+  = render 'comments' 
 - if user_signed_in?
   .content
     = render 'comment_form'
+    = render 'comments'
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'

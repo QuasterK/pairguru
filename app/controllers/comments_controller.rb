@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :find_movie
+  before_action :find_comment, only: [:destroy]
 
   def new
   end
@@ -17,6 +18,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment.destroy
+    redirect_to movie_path(@movie.id)
   end
 
   def index
@@ -27,8 +30,12 @@ class CommentsController < ApplicationController
 
   private
   def find_movie
-       @movie = Movie.find(params[:movie_id])
-   end
+    @movie = Movie.find(params[:movie_id])
+  end
+
+  def find_comment
+    @comment = Comment.where(movie_id: @movie.id, user_id: current_user.id).first
+  end
 
   def comments_params
   params.require(:comment).permit(:description).merge({
