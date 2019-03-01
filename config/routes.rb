@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'comments/new'
-  get 'comments/create'
-  get 'comments/update'
-  get 'comments/destroy'
-  get 'comments/index'
-  get 'comments/show'
   post 'comments_create', to: 'comments#create', as: 'create_comment'
   delete 'delete_comment', to: 'comments#destroy', as: 'delete_comment'
   devise_for :users
