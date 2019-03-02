@@ -1,7 +1,16 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :find_movie
+  before_action :find_movie, except: [:index]
   before_action :find_comment, only: [:destroy]
+
+  def index
+    @active_users= User.joins(:comments)
+                        .group('users.id')
+                        .where('comments.created_at >= ?', 1.week.ago.utc)
+                        .order('count(comments.id) desc')
+                        .limit(10)
+                        .pluck(:name)
+  end
 
   def new
   end
@@ -20,9 +29,6 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     redirect_to movie_path(@movie.id)
-  end
-
-  def index
   end
 
   def show

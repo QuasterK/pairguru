@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   post 'comments_create', to: 'comments#create', as: 'create_comment'
   delete 'delete_comment', to: 'comments#destroy', as: 'delete_comment'
+  get 'comments/index', to: 'comments#index', as: 'top_users'
   devise_for :users
 
   root "home#welcome"
