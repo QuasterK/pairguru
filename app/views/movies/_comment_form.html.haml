@@ -1,0 +1,7 @@
+#form.row
+  = form_with(url: create_comment_path, scope: 'comment', :html => {class: 'form-row align-items-center'}) do |form|
+    .col-sm-8
+      = form.text_field :description, :class => 'form-control', placeholder: "Type your comment here..."
+    .col-sm-4
+      = hidden_field_tag :movie_id, @movie.id
+      = form.submit "Create comment", :class => 'btn btn-primary'
