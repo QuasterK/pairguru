@@ -17,4 +17,10 @@ Rails.application.routes.draw do
       get :export
     end
   end
+
+  resources :users, only: :index do
+    member do
+      get "comments"
+    end
+  end
 end

@@ -1,0 +1,16 @@
+%h1 Top active users of the week
+-if @active_users
+  %table.table.table-striped.half
+    %thead
+      %tr
+        %td
+
+        %td
+          Name
+    %tbody
+      -@active_users.each_with_index  do |user, index|
+        %tr
+          %td
+            = index + 1
+          %td
+            = user
