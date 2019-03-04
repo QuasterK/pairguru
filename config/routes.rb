@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   post 'comments_create', to: 'comments#create', as: 'create_comment'
   delete 'delete_comment', to: 'comments#destroy', as: 'delete_comment'
-  get 'comments/index', to: 'comments#index', as: 'top_users'
   devise_for :users
 
   root "home#welcome"
@@ -16,6 +15,12 @@ Rails.application.routes.draw do
     end
     collection do
       get :export
+    end
+  end
+
+  resources :users, only: :index do
+    member do
+      get "comments"
     end
   end
 end
