@@ -5,9 +5,9 @@ describe CommentsController do
   let(:movie) {FactoryBot.build(:movie)}
   let(:comment) {FactoryBot.build(:comment)}
 
-  describe 'get index' do
-    it { should route(:get, '/comments/index').to(action: :index) }
-  end
+  # describe 'get index' do
+  #   it { should route(:get, '/comments/index').to(action: :index) }
+  # end
 
   describe 'post #create' do
     it { should route(:post, '/comments_create').to(action: :create) }
